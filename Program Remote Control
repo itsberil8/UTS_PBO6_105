@@ -1,0 +1,51 @@
+class RemoteControl:
+    def __init__(self, merek, model):
+        self.merek = merek
+        self.model = model
+        self.kec = 0
+        self.direction = "forward"
+        self.turning = "straight"
+        
+    def accelerate(self):
+        self.kec += 10
+        
+    def brake(self):
+        self.kec -= 10
+        
+    def turn_left(self):
+        if self.direction == "forward":
+            self.turning = "left"
+        elif self.direction == "backward":
+            self.turning = "right"
+        
+    def turn_right(self):
+        if self.direction == "forward":
+            self.turning = "right"
+        elif self.direction == "backward":
+            self.turning = "left"
+        
+    def reverse(self):
+        if self.direction == "forward":
+            self.direction = "backward"
+        elif self.direction == "backward":
+            self.direction = "forward"
+    
+    def get_status(self):
+        print("Merek:", self.merek)
+        print("Model:", self.model)
+        print("Kecepatan:", self.kec, "km/h")
+        print("Direction:", self.direction)
+        print("Turning:", self.turning)
+
+# Main program
+car = RemoteControl("Tamiya", "Monster Truck")
+car.get_status()
+
+car.accelerate()
+car.turn_left()
+car.get_status()
+
+car.reverse()
+car.turn_right()
+car.brake()
+car.get_status()
